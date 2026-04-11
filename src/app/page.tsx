@@ -1,10 +1,25 @@
+import Hero from "@/components/sections/Hero";
+import SocialProofBar from "@/components/sections/SocialProofBar";
+import ProblemSolution from "@/components/sections/ProblemSolution";
+import ServicesOverview from "@/components/sections/ServicesOverview";
+import HowItWorks from "@/components/sections/HowItWorks";
+import CaseHighlight from "@/components/sections/CaseHighlight";
+import RiskReversal from "@/components/sections/RiskReversal";
+import LeadMagnet from "@/components/sections/LeadMagnet";
+import FinalCTA from "@/components/sections/FinalCTA";
+
 export default function Forside() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center">
-      <h1 className="text-5xl font-bold">AI Konsulenterne</h1>
-      <p className="mt-4 text-xl text-black/60">
-        Skræddersyede AI-løsninger til din virksomhed
-      </p>
-    </main>
+    <>
+      <Hero />
+      <SocialProofBar />
+      <ProblemSolution />
+      <ServicesOverview />
+      <HowItWorks />
+      <CaseHighlight />
+      <RiskReversal />
+      <LeadMagnet />
+      <FinalCTA />
+    </>
   );
 }

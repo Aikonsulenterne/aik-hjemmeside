@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Button from "@/components/ui/Button";
 
 export const metadata: Metadata = {
-  title: "Om os — AI Konsulenterne",
+  title: "Om os",
   description:
     "Mød teamet bag AI Konsulenterne. Vi er passionerede om at gøre AI tilgængeligt for danske virksomheder.",
 };

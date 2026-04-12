@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Kontakt — AI Konsulenterne",
+  title: "Kontakt",
   description:
     "Kontakt AI Konsulenterne. Ring til Alexander på +45 25547074 eller book en gratis AI-afklaring.",
 };

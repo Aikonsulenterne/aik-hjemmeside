@@ -1,4 +1,5 @@
 import Link from "next/link";
+import FadeIn from "@/components/ui/FadeIn";
 
 export default function CaseHighlight() {
   return (
@@ -6,11 +7,14 @@ export default function CaseHighlight() {
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Image placeholder */}
+          <FadeIn>
           <div className="bg-gray-200 rounded-2xl aspect-video flex items-center justify-center">
             <span className="text-gray-400 text-sm">Casebillede</span>
           </div>
+          </FadeIn>
 
           {/* Content */}
+          <FadeIn delay={200}>
           <div>
             <p className="text-xs uppercase tracking-widest text-primary font-semibold mb-4">
               Kundecase
@@ -64,6 +68,7 @@ export default function CaseHighlight() {
               </svg>
             </Link>
           </div>
+          </FadeIn>
         </div>
       </div>
     </section>

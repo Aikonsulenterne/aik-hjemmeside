@@ -3,7 +3,7 @@ import Link from "next/link";
 import Button from "@/components/ui/Button";
 
 export const metadata: Metadata = {
-  title: "Cases — AI Konsulenterne",
+  title: "Cases",
   description:
     "Se hvordan vi har hjulpet danske virksomheder med AI-løsninger. Konkrete resultater fra virkelige kunder.",
 };

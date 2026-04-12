@@ -1,7 +1,10 @@
+import FadeIn from "@/components/ui/FadeIn";
+
 export default function RiskReversal() {
   return (
     <section className="py-[clamp(3rem,8vw,6rem)]">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <FadeIn>
         <div className="max-w-3xl mx-auto bg-gray-50 rounded-3xl p-10 lg:p-16 text-center">
           <div className="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-6">
             <svg
@@ -32,6 +35,7 @@ export default function RiskReversal() {
             Ingen risiko, ingen skjulte omkostninger, ingen forpligtelser.
           </p>
         </div>
+        </FadeIn>
       </div>
     </section>
   );

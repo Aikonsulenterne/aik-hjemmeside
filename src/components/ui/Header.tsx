@@ -62,6 +62,8 @@ export default function Header() {
           <div className="relative" ref={dropdownRef}>
             <button
               onClick={() => setDropdownOpen(!dropdownOpen)}
+              aria-expanded={dropdownOpen}
+              aria-haspopup="true"
               className="text-sm font-semibold text-black/60 hover:text-black transition-colors flex items-center gap-1"
             >
               Ydelser
@@ -77,7 +79,7 @@ export default function Header() {
             </button>
 
             {dropdownOpen && (
-              <div className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-64 bg-white rounded-xl shadow-lg border border-gray-100 py-2 animate-popup-in">
+              <div className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-64 bg-white rounded-xl shadow-lg border border-gray-100 py-2 animate-popup-in" role="menu">
                 {serviceLinks.map((link) => (
                   <Link
                     key={link.href}

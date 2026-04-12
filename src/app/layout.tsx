@@ -55,8 +55,11 @@ export default function RootLayout({
         <Analytics />
       </head>
       <body>
+        <a href="#main-content" className="skip-to-content">
+          Spring til indhold
+        </a>
         <Header />
-        <main className="pt-16 lg:pt-20 pb-14 lg:pb-12">{children}</main>
+        <main id="main-content" className="pt-16 lg:pt-20 pb-14 lg:pb-12">{children}</main>
         <Footer />
         <BottomBar />
         <ScrollToTop />

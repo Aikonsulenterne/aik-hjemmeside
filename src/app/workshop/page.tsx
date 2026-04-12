@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import Button from "@/components/ui/Button";
+import FadeIn from "@/components/ui/FadeIn";
+import SubpageCTA from "@/components/sections/SubpageCTA";
 
 export const metadata: Metadata = {
   title: "AI Workshop",
@@ -12,16 +14,19 @@ const includes = [
     title: "Hands-on træning",
     description:
       "Ikke slides og teori — jeres team arbejder med rigtige AI-værktøjer og jeres egne opgaver.",
+    iconPath: "M15.59 14.37a6 6 0 01-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 006.16-12.12A14.98 14.98 0 009.631 8.41m5.96 5.96a14.926 14.926 0 01-5.841 2.58m-.119-8.54a6 6 0 00-7.381 5.84h4.8m2.581-5.84a14.927 14.927 0 00-2.58 5.84m2.699 2.7c-.103.021-.207.041-.311.06a15.09 15.09 0 01-2.448-2.448 14.9 14.9 0 01.06-.312m-2.24 2.39a4.493 4.493 0 00-1.757 4.306 4.493 4.493 0 004.306-1.758M16.5 9a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z",
   },
   {
     title: "Tilpasset jeres branche",
     description:
       "Vi skræddersyr indholdet til jeres virksomhed, så alt er relevant og kan bruges med det samme.",
+    iconPath: "M10.5 6h9.75M10.5 6a1.5 1.5 0 11-3 0m3 0a1.5 1.5 0 10-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-9.75 0h9.75",
   },
   {
     title: "Konkrete takeaways",
     description:
       "Alle deltagere går hjem med en personlig AI-handlingsplan og adgang til de værktøjer vi gennemgår.",
+    iconPath: "M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z",
   },
 ];
 
@@ -31,18 +36,21 @@ const formats = [
     description:
       "Intensiv introduktion til AI-værktøjer. Perfekt til teams der vil i gang hurtigt.",
     suited: "Velegnet til: Teams på 5-15 personer",
+    highlight: false,
   },
   {
     title: "Hel dag (6 timer)",
     description:
       "Dybdegående workshop med hands-on øvelser, case-arbejde og individuel AI-handlingsplan.",
     suited: "Velegnet til: Afdelinger og ledergrupper",
+    highlight: true,
   },
   {
     title: "Forløb (3 sessioner)",
     description:
       "Tre workshops over 3 uger. Vi følger op på implementering og sikrer at AI bliver en del af hverdagen.",
     suited: "Velegnet til: Organisationer der vil have varig forandring",
+    highlight: false,
   },
 ];
 
@@ -52,45 +60,63 @@ export default function Workshop() {
       {/* Hero */}
       <section className="pt-[clamp(4rem,12vw,8rem)] pb-[clamp(3rem,8vw,6rem)]">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="max-w-3xl">
-            <p className="text-xs uppercase tracking-widest text-primary font-semibold mb-4">
-              AI Workshop
-            </p>
-            <h1 className="text-4xl lg:text-5xl xl:text-6xl font-bold tracking-heading text-gray-900 leading-[1.05]">
-              Giv jeres team superkræfter med AI
-            </h1>
-            <p className="text-lg lg:text-xl text-gray-500 mt-6 leading-relaxed">
-              Hands-on workshop hvor jeres team lærer at bruge AI i hverdagen.
-              Konkrete værktøjer — ikke teori og buzzwords.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 mt-10">
-              <Button variant="primary" size="lg" href="/kontakt">
-                Book en workshop
-              </Button>
+          <FadeIn>
+            <div className="max-w-3xl">
+              <p className="text-xs uppercase tracking-widest text-primary font-semibold mb-4">
+                AI Workshop
+              </p>
+              <h1 className="text-4xl lg:text-5xl xl:text-6xl font-bold tracking-heading text-gray-900 leading-[1.05]">
+                Giv jeres team superkræfter med AI
+              </h1>
+              <p className="text-lg lg:text-xl text-gray-500 mt-6 leading-relaxed">
+                Hands-on workshop hvor jeres team lærer at bruge AI i hverdagen.
+                Konkrete værktøjer — ikke teori og buzzwords.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 mt-10">
+                <Button variant="primary" size="lg" href="/kontakt">
+                  Book en workshop
+                </Button>
+              </div>
             </div>
-          </div>
+          </FadeIn>
         </div>
       </section>
 
       {/* What's included */}
       <section className="bg-gray-50 py-[clamp(3rem,8vw,6rem)]">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <h2 className="text-3xl lg:text-4xl font-bold tracking-heading text-gray-900 text-center mb-12">
-            Hvad indeholder workshoppen?
-          </h2>
+          <FadeIn>
+            <h2 className="text-3xl lg:text-4xl font-bold tracking-heading text-gray-900 text-center mb-12">
+              Hvad indeholder workshoppen?
+            </h2>
+          </FadeIn>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {includes.map((item) => (
-              <div
-                key={item.title}
-                className="bg-white rounded-2xl p-8 shadow-sm"
-              >
-                <h3 className="text-xl font-bold tracking-heading mb-3">
-                  {item.title}
-                </h3>
-                <p className="text-gray-500 leading-relaxed">
-                  {item.description}
-                </p>
-              </div>
+            {includes.map((item, i) => (
+              <FadeIn key={item.title} delay={i * 150}>
+                <div className="bg-white rounded-2xl p-8 shadow-sm h-full">
+                  <div className="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center mb-4">
+                    <svg
+                      className="w-5 h-5 text-primary"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth={1.5}
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d={item.iconPath}
+                      />
+                    </svg>
+                  </div>
+                  <h3 className="text-xl font-bold tracking-heading mb-3">
+                    {item.title}
+                  </h3>
+                  <p className="text-gray-500 leading-relaxed">
+                    {item.description}
+                  </p>
+                </div>
+              </FadeIn>
             ))}
           </div>
         </div>
@@ -99,49 +125,46 @@ export default function Workshop() {
       {/* Formats */}
       <section className="py-[clamp(3rem,8vw,6rem)]">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <h2 className="text-3xl lg:text-4xl font-bold tracking-heading text-gray-900 text-center mb-12">
-            Vælg det format der passer jer
-          </h2>
+          <FadeIn>
+            <h2 className="text-3xl lg:text-4xl font-bold tracking-heading text-gray-900 text-center mb-12">
+              Vælg det format der passer jer
+            </h2>
+          </FadeIn>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {formats.map((format) => (
-              <div
-                key={format.title}
-                className="border-2 border-gray-200 rounded-2xl p-8 hover:border-primary transition-colors"
-              >
-                <h3 className="text-xl font-bold tracking-heading mb-3">
-                  {format.title}
-                </h3>
-                <p className="text-gray-500 leading-relaxed mb-4">
-                  {format.description}
-                </p>
-                <p className="text-sm text-primary font-semibold">
-                  {format.suited}
-                </p>
-              </div>
+            {formats.map((format, i) => (
+              <FadeIn key={format.title} delay={i * 150}>
+                <div
+                  className={`rounded-2xl p-8 h-full transition-colors ${
+                    format.highlight
+                      ? "border-2 border-primary bg-primary/5"
+                      : "border-2 border-gray-200 hover:border-primary"
+                  }`}
+                >
+                  {format.highlight && (
+                    <p className="text-xs uppercase tracking-widest text-primary font-semibold mb-3">
+                      Mest populær
+                    </p>
+                  )}
+                  <h3 className="text-xl font-bold tracking-heading mb-3">
+                    {format.title}
+                  </h3>
+                  <p className="text-gray-500 leading-relaxed mb-4">
+                    {format.description}
+                  </p>
+                  <p className="text-sm text-primary font-semibold">
+                    {format.suited}
+                  </p>
+                </div>
+              </FadeIn>
             ))}
           </div>
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="bg-gray-50 py-[clamp(3rem,8vw,6rem)]">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center">
-          <div className="max-w-2xl mx-auto">
-            <h2 className="text-3xl lg:text-4xl font-bold tracking-heading text-gray-900">
-              Klar til at løfte jeres team?
-            </h2>
-            <p className="text-lg text-gray-500 mt-4 leading-relaxed">
-              Kontakt os for en uforpligtende snak om hvilken workshop der
-              passer til jeres virksomhed.
-            </p>
-            <div className="mt-8">
-              <Button variant="primary" size="lg" href="/kontakt">
-                Book en workshop
-              </Button>
-            </div>
-          </div>
-        </div>
-      </section>
+      <SubpageCTA
+        heading="Klar til at løfte jeres team?"
+        description="Kontakt os for en uforpligtende snak om hvilken workshop der passer til jeres virksomhed."
+      />
     </>
   );
 }

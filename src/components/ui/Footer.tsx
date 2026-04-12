@@ -8,6 +8,7 @@ const navLinks = [
   { label: "Viden om AI", href: "/viden-om-ai" },
   { label: "Om os", href: "/om-os" },
   { label: "Kontakt", href: "/kontakt" },
+  { label: "Gratis AI-guide", href: "/ai-guide" },
 ];
 
 export default function Footer() {
@@ -36,7 +37,7 @@ export default function Footer() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="text-sm text-gray-500 hover:text-black transition-colors"
+                  className="text-sm text-gray-500 hover:text-black transition-colors hover-underline"
                 >
                   {link.label}
                 </Link>

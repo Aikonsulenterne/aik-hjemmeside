@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import CalBooking from "@/components/ui/CalBooking";
+import FadeIn from "@/components/ui/FadeIn";
 
 export const metadata: Metadata = {
   title: "Kontakt",
@@ -12,15 +14,17 @@ export default function Kontakt() {
       {/* Hero */}
       <section className="pt-[clamp(4rem,12vw,8rem)] pb-[clamp(3rem,8vw,6rem)]">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-4xl lg:text-5xl xl:text-6xl font-bold tracking-heading text-gray-900 leading-[1.05]">
-              Lad os tage en snak
-            </h1>
-            <p className="text-lg lg:text-xl text-gray-500 mt-6 leading-relaxed">
-              Ring direkte, send en mail, eller book en gratis 45-minutters
-              AI-afklaring. Vi er klar til at hjælpe.
-            </p>
-          </div>
+          <FadeIn>
+            <div className="max-w-3xl mx-auto text-center">
+              <h1 className="text-4xl lg:text-5xl xl:text-6xl font-bold tracking-heading text-gray-900 leading-[1.05]">
+                Lad os tage en snak
+              </h1>
+              <p className="text-lg lg:text-xl text-gray-500 mt-6 leading-relaxed">
+                Ring direkte, send en mail, eller book en gratis 45-minutters
+                AI-afklaring. Vi er klar til at hjælpe.
+              </p>
+            </div>
+          </FadeIn>
         </div>
       </section>
 
@@ -105,14 +109,30 @@ export default function Kontakt() {
               <h2 className="text-lg font-bold tracking-heading mb-1">
                 Book et møde
               </h2>
-              <p className="text-sm text-gray-500 mb-4">
+              <p className="text-sm text-gray-500">
                 Gratis 45-minutters AI-afklaring
-              </p>
-              <p className="text-xs text-gray-400">
-                Cal.com booking kommer snart
               </p>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Cal.com Booking */}
+      <section className="pb-[clamp(3rem,8vw,6rem)]">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <FadeIn>
+            <div className="max-w-3xl mx-auto text-center mb-10">
+              <h2 className="text-2xl lg:text-3xl font-bold tracking-heading text-gray-900">
+                Book din gratis AI-afklaring
+              </h2>
+              <p className="text-gray-500 mt-3">
+                Vælg en tid der passer dig — mødet tager 45 minutter.
+              </p>
+            </div>
+          </FadeIn>
+          <FadeIn delay={150}>
+            <CalBooking className="max-w-3xl mx-auto min-h-[400px]" />
+          </FadeIn>
         </div>
       </section>
 

@@ -21,11 +21,11 @@ export default function PopupPhone() {
 
   return (
     <div
-      className="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm flex items-center justify-center p-4"
+      className="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm flex items-center justify-center p-4 animate-overlay-in"
       onClick={dismiss}
     >
       <div
-        className="bg-white rounded-2xl shadow-2xl p-8 max-w-sm w-full text-center animate-in"
+        className="bg-white rounded-2xl shadow-2xl p-8 max-w-sm w-full text-center animate-popup-in"
         onClick={(e) => e.stopPropagation()}
       >
         <p className="text-xs uppercase tracking-widest text-gray-400 font-semibold mb-2">

@@ -11,20 +11,16 @@ const clients = [
 
 export default function SocialProofBar() {
   return (
-    <section className="border-t border-b border-gray-200 bg-gray-50 py-8 lg:py-10 overflow-hidden">
+    <section className="border-t border-gray-100 py-10 lg:py-12 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <p className="text-xs uppercase tracking-widest text-gray-400 font-semibold text-center mb-6">
+        <p className="text-[11px] uppercase tracking-[0.2em] text-gray-400 font-semibold text-center mb-8">
           Virksomheder vi har hjulpet
         </p>
-      </div>
-
-      {/* Scrolling marquee */}
-      <div className="relative">
-        <div className="flex animate-marquee whitespace-nowrap hover:[animation-play-state:paused]">
-          {[...clients, ...clients].map((name, i) => (
+        <div className="flex flex-wrap items-center justify-center gap-x-10 lg:gap-x-14 gap-y-4">
+          {clients.map((name) => (
             <span
-              key={`${name}-${i}`}
-              className="text-lg font-bold text-gray-300 select-none mx-8 lg:mx-12 shrink-0"
+              key={name}
+              className="text-base lg:text-lg font-bold text-gray-400 hover:text-gray-600 transition-colors duration-300 select-none tracking-wide uppercase"
             >
               {name}
             </span>

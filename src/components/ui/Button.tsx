@@ -12,13 +12,13 @@ const variantClasses = {
   primary:
     "bg-primary text-white hover:bg-primary-dark",
   secondary:
-    "border-2 border-black text-black hover:bg-black hover:text-white",
+    "border-2 border-gray-900 text-gray-900 hover:bg-gray-900 hover:text-white",
 };
 
 const sizeClasses = {
-  sm: "px-6 py-2.5 text-sm",
-  default: "px-8 py-3.5 text-base",
-  lg: "px-10 py-4 text-lg",
+  sm: "px-5 py-2 text-sm",
+  default: "px-6 py-3 text-sm",
+  lg: "px-7 py-3 text-sm lg:px-8 lg:py-3.5 lg:text-base",
 };
 
 export default function Button({

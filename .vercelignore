@@ -1,0 +1,15 @@
+# Exclude Strapi CMS — deployes separat
+cms/
+
+# Dev-filer
+.env.local
+.env.*.local
+*.log
+.DS_Store
+
+# Build artefakter (re-genereres af Vercel)
+.next/
+node_modules/
+
+# Lokale tunnels/scripts
+/tmp/

@@ -49,11 +49,12 @@ export default function Header() {
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-8 flex items-center justify-between h-16 lg:h-20">
-        <Link
-          href="/"
-          className="text-xl font-bold tracking-heading text-black"
-        >
-          AI Konsulenterne
+        <Link href="/" className="flex items-center gap-3">
+          <span className="relative">
+            <span className="text-[2rem] lg:text-[2.4rem] font-bold leading-none text-primary">AI</span>
+            <span className="absolute bottom-[-4px] left-0 w-full h-[3px] rounded-full bg-primary" />
+          </span>
+          <span className="text-sm lg:text-base font-bold tracking-[0.1em] text-primary uppercase">Konsulenterne</span>
         </Link>
 
         {/* Desktop nav */}
@@ -103,7 +104,7 @@ export default function Header() {
               {link.label}
             </Link>
           ))}
-          <Button variant="primary" size="sm" href="/kontakt">
+          <Button variant="primary" size="sm" href="/kontakt" cal>
             Book møde
           </Button>
         </nav>

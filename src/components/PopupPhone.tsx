@@ -8,8 +8,27 @@ export default function PopupPhone() {
   useEffect(() => {
     if (sessionStorage.getItem("aik-popup-dismissed")) return;
 
-    const timer = setTimeout(() => setVisible(true), 10000);
-    return () => clearTimeout(timer);
+    // Show popup after user has scrolled 50% of the page
+    function onScroll() {
+      const scrollPercent =
+        window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
+      if (scrollPercent > 0.5) {
+        setVisible(true);
+        window.removeEventListener("scroll", onScroll);
+      }
+    }
+
+    // Also show after 45 seconds as fallback (for users who read slowly)
+    const timer = setTimeout(() => {
+      setVisible(true);
+      window.removeEventListener("scroll", onScroll);
+    }, 45000);
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener("scroll", onScroll);
+    };
   }, []);
 
   function dismiss() {

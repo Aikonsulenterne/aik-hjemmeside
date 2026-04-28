@@ -17,30 +17,52 @@ const raleway = Raleway({
 
 export const metadata: Metadata = {
   title: {
-    default: "AI Konsulenterne — Skræddersyede AI-løsninger til din virksomhed",
+    default: "AI Konsulent til Danske SMV'er | Skræddersyede AI-Løsninger — AI Konsulenterne",
     template: "%s — AI Konsulenterne",
   },
   description:
-    "AI Konsulenterne bygger skræddersyede AI-løsninger til danske SMV'er. Book en gratis AI-afklaring og spar tid på manuelle processer.",
+    "AI-konsulent for danske SMV'er. Vi bygger skræddersyede AI-løsninger — også uden intern AI-viden eller IT-afdeling. Gratis AI-afklaring. Finder vi ikke en mulighed, koster det ingenting.",
   metadataBase: new URL("https://ai-konsulenterne.dk"),
+  alternates: {
+    canonical: "/",
+  },
+  keywords: [
+    "AI konsulent",
+    "AI konsulenthus",
+    "AI løsninger virksomhed",
+    "skræddersyet AI",
+    "AI til SMV",
+    "AI rådgivning",
+    "AI implementering Danmark",
+    "AI automatisering",
+    "kunstig intelligens virksomhed",
+    "AI workshop",
+  ],
   openGraph: {
     type: "website",
     locale: "da_DK",
     url: "https://ai-konsulenterne.dk",
     siteName: "AI Konsulenterne",
-    title: "AI Konsulenterne — Skræddersyede AI-løsninger til din virksomhed",
+    title: "AI Konsulent til Danske SMV'er | Skræddersyede AI-Løsninger",
     description:
-      "Vi bygger skræddersyede AI-løsninger til danske SMV'er. Spar tid på manuelle processer — book en gratis AI-afklaring.",
+      "Vi bygger skræddersyede AI-løsninger til danske SMV'er — også dem uden intern AI-viden eller IT-afdeling. Gratis AI-afklaring.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "AI Konsulenterne — Skræddersyede AI-løsninger",
+    title: "AI Konsulent til Danske SMV'er — AI Konsulenterne",
     description:
-      "Vi bygger skræddersyede AI-løsninger til danske SMV'er. Book en gratis AI-afklaring.",
+      "Skræddersyede AI-løsninger til danske SMV'er. Gratis AI-afklaring — ingen forpligtelse.",
   },
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-snippet": -1,
+      "max-image-preview": "large",
+      "max-video-preview": -1,
+    },
   },
 };
 

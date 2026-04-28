@@ -11,7 +11,7 @@ export default function SubpageCTA({
   description = "Book en gratis 45-minutters AI-afklaring. Ingen forpligtelse, ingen forberedelse — vi tager det hele.",
 }: SubpageCTAProps) {
   return (
-    <section className="py-[clamp(3rem,8vw,6rem)] bg-gray-50">
+    <section className="py-[clamp(3rem,8vw,6rem)] border-t border-gray-100">
       <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center">
         <FadeIn>
           <div className="max-w-2xl mx-auto">
@@ -20,8 +20,8 @@ export default function SubpageCTA({
             </h2>
             <p className="text-gray-500 mt-4 leading-relaxed">{description}</p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-8">
-              <Button variant="primary" href="/kontakt">
-                Book gratis AI-afklaring
+              <Button variant="primary" href="/kontakt" cal>
+                Få jeres gratis AI-plan
               </Button>
               <a
                 href="tel:+4525547074"

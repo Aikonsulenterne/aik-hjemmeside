@@ -1,38 +1,59 @@
 import type { Metadata } from "next";
+import Image from "next/image";
+import Link from "next/link";
 import Button from "@/components/ui/Button";
 import FadeIn from "@/components/ui/FadeIn";
+import {
+  getBlogPosts,
+  strapiImageUrl,
+  type BlogPost,
+} from "@/lib/strapi";
 
 export const metadata: Metadata = {
-  title: "Viden om AI",
+  title: "Viden om AI | AI Guides, Artikler og Indsigter for SMV'er",
   description:
-    "Artikler og indsigter om AI til danske virksomheder. Lær hvordan AI kan bruges i praksis.",
+    "Praktiske AI-guides og artikler til danske virksomheder. Lær om AI-implementering, GDPR, ChatGPT vs skræddersyet AI, ROI-beregning og meget mere.",
+  alternates: { canonical: "/viden-om-ai" },
+  keywords: [
+    "viden om AI",
+    "AI guide Danmark",
+    "AI artikler",
+    "hvordan bruge AI",
+    "AI for virksomheder",
+    "AI blog dansk",
+  ],
+  openGraph: {
+    title: "Viden om AI — Praktiske Guides til Danske Virksomheder",
+    description:
+      "Alt du skal vide om AI i praksis — fra første skridt til avancerede use-cases.",
+    url: "/viden-om-ai",
+  },
 };
 
-const articles = [
-  {
-    title: "Hvad er AI — og hvad kan det gøre for din virksomhed?",
-    excerpt:
-      "En nede-på-jorden introduktion til AI for danske virksomhedsejere. Ingen tech-jargon, kun konkret viden.",
-    category: "Grundlæggende",
-    readTime: "5 min",
-  },
-  {
-    title: "5 tegn på at din virksomhed er klar til AI",
-    excerpt:
-      "Ikke alle virksomheder er klar til AI. Her er de 5 tegn der viser at I er klar til at tage næste skridt.",
-    category: "Strategi",
-    readTime: "4 min",
-  },
-  {
-    title: "AI i kundeservice: Sådan sparer I tid uden at miste kvalitet",
-    excerpt:
-      "Kundeservice er et af de områder hvor AI giver hurtigst ROI. Her er hvordan I kommer i gang.",
-    category: "Use cases",
-    readTime: "6 min",
-  },
-];
+const categoryLabels: Record<string, string> = {
+  guide: "Guide",
+  "case-story": "Case",
+  "tech-dive": "Tech",
+  "business-case": "Business",
+  compliance: "Compliance",
+  news: "Nyhed",
+};
 
-export default function VidenOmAI() {
+function formatDate(iso: string): string {
+  try {
+    return new Date(iso).toLocaleDateString("da-DK", {
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+    });
+  } catch {
+    return "";
+  }
+}
+
+export default async function VidenOmAI() {
+  const posts = await getBlogPosts().catch(() => [] as BlogPost[]);
+
   return (
     <>
       {/* Hero */}
@@ -55,31 +76,69 @@ export default function VidenOmAI() {
       {/* Articles */}
       <section className="pb-[clamp(3rem,8vw,6rem)]">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {articles.map((article, i) => (
-              <FadeIn key={article.title} delay={i * 150}>
-                <div className="bg-gray-50 rounded-2xl p-8 hover:shadow-md transition-shadow h-full flex flex-col">
-                  <div className="flex items-center gap-3 mb-4">
-                    <span className="text-xs uppercase tracking-widest text-primary font-semibold">
-                      {article.category}
-                    </span>
-                    <span className="text-xs text-gray-400">
-                      {article.readTime}
-                    </span>
-                  </div>
-                  <h2 className="text-xl font-bold tracking-heading mb-3 leading-snug">
-                    {article.title}
-                  </h2>
-                  <p className="text-gray-500 leading-relaxed text-sm flex-grow">
-                    {article.excerpt}
-                  </p>
-                  <p className="text-primary font-semibold text-sm mt-4">
-                    Kommer snart
-                  </p>
-                </div>
-              </FadeIn>
-            ))}
-          </div>
+          {posts.length === 0 ? (
+            <div className="max-w-2xl mx-auto bg-gray-50 rounded-2xl p-10 text-center border border-gray-100">
+              <p className="text-gray-500 leading-relaxed">
+                Blog-artikler er på vej. I mellemtiden kan du hente vores gratis
+                AI-guide.
+              </p>
+              <div className="mt-6">
+                <Button variant="primary" href="/ai-guide">
+                  Hent gratis AI-guide
+                </Button>
+              </div>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+              {posts.map((post, i) => {
+                const imageUrl = strapiImageUrl(post.featuredImage);
+                return (
+                  <FadeIn key={post.id} delay={i * 100}>
+                    <Link
+                      href={`/viden-om-ai/${post.slug}`}
+                      className="group block h-full"
+                    >
+                      <article className="bg-white rounded-2xl overflow-hidden border border-gray-100 h-full flex flex-col hover:shadow-md hover:-translate-y-0.5 transition-all duration-300">
+                        {imageUrl && (
+                          <div className="relative aspect-[16/9] bg-gray-100 overflow-hidden">
+                            <Image
+                              src={imageUrl}
+                              alt={post.title}
+                              fill
+                              className="object-cover transition-transform duration-500 group-hover:scale-105"
+                            />
+                          </div>
+                        )}
+                        <div className="p-6 flex-grow flex flex-col">
+                          <div className="flex items-center gap-3 mb-3">
+                            {post.category && (
+                              <span className="text-[11px] uppercase tracking-widest text-primary font-semibold">
+                                {categoryLabels[post.category] ?? post.category}
+                              </span>
+                            )}
+                            {post.readingTime && (
+                              <span className="text-[11px] text-gray-400">
+                                {post.readingTime} min
+                              </span>
+                            )}
+                          </div>
+                          <h2 className="text-lg lg:text-xl font-bold tracking-heading mb-3 leading-snug group-hover:text-primary transition-colors">
+                            {post.title}
+                          </h2>
+                          <p className="text-gray-500 leading-relaxed text-sm flex-grow">
+                            {post.excerpt}
+                          </p>
+                          <p className="text-xs text-gray-400 mt-4 pt-4 border-t border-gray-100">
+                            {formatDate(post.publishedAt)}
+                          </p>
+                        </div>
+                      </article>
+                    </Link>
+                  </FadeIn>
+                );
+              })}
+            </div>
+          )}
         </div>
       </section>
 

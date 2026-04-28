@@ -1,11 +1,44 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import FadeIn from "@/components/ui/FadeIn";
 import SubpageCTA from "@/components/sections/SubpageCTA";
+import {
+  getTeamMembers,
+  strapiImageUrl,
+  type TeamMember,
+} from "@/lib/strapi";
+
+const fallbackImages = [
+  "/team/alexander.svg",
+  "/team/member-2.svg",
+  "/team/member-3.svg",
+  "/team/member-4.svg",
+];
+
+function imageForMember(m: TeamMember, i: number): string {
+  const uploaded = strapiImageUrl(m.photo);
+  if (uploaded) return uploaded;
+  if (m.isPrimary) return fallbackImages[0];
+  return fallbackImages[(i % 3) + 1];
+}
 
 export const metadata: Metadata = {
-  title: "Om os",
+  title: "Om Os | Mød Holdet Bag AI Konsulenterne",
   description:
-    "Mød teamet bag AI Konsulenterne. Vi er passionerede om at gøre AI tilgængeligt for danske virksomheder.",
+    "AI Konsulenterne er et dansk AI-konsulenthus i København med fokus på SMV'er. Mød Alexander og resten af teamet der bygger skræddersyede AI-løsninger.",
+  alternates: { canonical: "/om-os" },
+  keywords: [
+    "AI konsulenter Danmark",
+    "AI konsulenthus København",
+    "Alexander AI konsulent",
+    "dansk AI bureau",
+  ],
+  openGraph: {
+    title: "Om Os — AI Konsulenterne",
+    description:
+      "Mød holdet bag AI Konsulenterne. Et lille, dansk hold med fokus på SMV'er.",
+    url: "/om-os",
+  },
 };
 
 const values = [
@@ -35,7 +68,10 @@ const values = [
   },
 ];
 
-export default function OmOs() {
+export default async function OmOs() {
+  const team = await getTeamMembers().catch(() => [] as TeamMember[]);
+  const primary = team.find((m) => m.isPrimary);
+
   return (
     <>
       {/* Hero */}
@@ -80,62 +116,99 @@ export default function OmOs() {
       <section className="py-[clamp(3rem,8vw,6rem)]">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <FadeIn>
-            <h2 className="text-3xl lg:text-4xl font-bold tracking-heading text-gray-900 text-center mb-12">
+            <h2 className="text-3xl lg:text-4xl font-bold tracking-heading text-gray-900 text-center mb-4">
               Teamet bag
             </h2>
+            <p className="text-gray-500 text-center max-w-2xl mx-auto mb-12 leading-relaxed">
+              Fire mennesker med én mission — at gøre AI konkret og nyttigt for
+              danske virksomheder.
+            </p>
           </FadeIn>
-          <FadeIn delay={150}>
-            <div className="max-w-sm mx-auto">
-              <div className="bg-gray-50 rounded-2xl p-8 text-center">
-                <div className="w-24 h-24 rounded-full bg-gray-200 mx-auto mb-4 flex items-center justify-center">
-                  <svg
-                    className="w-10 h-10 text-gray-300"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth={1}
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"
+
+          {primary && (
+            <FadeIn delay={100}>
+              <div className="max-w-4xl mx-auto mb-16">
+                <div className="bg-gray-50 rounded-2xl p-8 lg:p-10 grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-8 items-center">
+                  <div className="relative aspect-[4/5] rounded-xl overflow-hidden ring-1 ring-gray-100">
+                    <Image
+                      src={imageForMember(primary, 0)}
+                      alt={primary.name}
+                      fill
+                      className="object-cover"
                     />
-                  </svg>
-                </div>
-                <h3 className="text-xl font-bold tracking-heading">Alexander</h3>
-                <p className="text-primary font-semibold text-sm mt-1">
-                  Founder & AI Konsulent
-                </p>
-                <p className="text-gray-500 mt-4 leading-relaxed text-sm">
-                  Alexander grundlagde AI Konsulenterne med en mission: at gøre AI
-                  tilgængeligt for alle danske virksomheder — uanset størrelse
-                  eller teknisk niveau.
-                </p>
-                <div className="flex items-center justify-center gap-4 mt-5">
-                  <a
-                    href="tel:+4525547074"
-                    className="text-sm text-primary font-semibold hover:underline"
-                  >
-                    +45 25 54 70 74
-                  </a>
-                  <a
-                    href="https://www.linkedin.com/company/ai-konsulenterne"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-gray-400 hover:text-primary transition-colors"
-                  >
-                    <svg
-                      className="w-4 h-4"
-                      fill="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-                    </svg>
-                  </a>
+                  </div>
+                  <div>
+                    <span className="inline-block bg-primary/10 text-primary text-[10px] uppercase tracking-widest font-bold px-2.5 py-1 rounded-full mb-4">
+                      Tager første møde
+                    </span>
+                    <h3 className="text-2xl lg:text-3xl font-bold tracking-heading">
+                      {primary.name}
+                    </h3>
+                    <p className="text-primary font-semibold mt-1">
+                      {primary.role}
+                    </p>
+                    {primary.bio && (
+                      <p className="text-gray-500 mt-4 leading-relaxed">
+                        {primary.bio}
+                      </p>
+                    )}
+                    <div className="flex items-center gap-4 mt-6">
+                      <a
+                        href="tel:+4525547074"
+                        className="text-sm text-primary font-semibold hover:underline"
+                      >
+                        +45 25 54 70 74
+                      </a>
+                      {primary.linkedinUrl && (
+                        <a
+                          href={primary.linkedinUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-gray-400 hover:text-primary transition-colors"
+                          aria-label="LinkedIn"
+                        >
+                          <svg
+                            className="w-4 h-4"
+                            fill="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                          </svg>
+                        </a>
+                      )}
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-          </FadeIn>
+            </FadeIn>
+          )}
+
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6 max-w-4xl mx-auto">
+            {team
+              .filter((m) => !m.isPrimary)
+              .map((person, i) => (
+                <FadeIn key={person.id} delay={i * 100}>
+                  <div className="group">
+                    <div className="relative aspect-[4/5] rounded-2xl overflow-hidden bg-gray-100 ring-1 ring-gray-100">
+                      <Image
+                        src={imageForMember(person, i)}
+                        alt={person.name}
+                        fill
+                        className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      />
+                    </div>
+                    <div className="mt-4">
+                      <p className="text-base lg:text-lg font-bold tracking-heading text-gray-900 leading-tight">
+                        {person.name}
+                      </p>
+                      <p className="text-sm text-gray-500 mt-0.5">
+                        {person.role}
+                      </p>
+                    </div>
+                  </div>
+                </FadeIn>
+              ))}
+          </div>
         </div>
       </section>
 

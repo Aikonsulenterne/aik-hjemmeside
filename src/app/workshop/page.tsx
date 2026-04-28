@@ -2,11 +2,55 @@ import type { Metadata } from "next";
 import Button from "@/components/ui/Button";
 import FadeIn from "@/components/ui/FadeIn";
 import SubpageCTA from "@/components/sections/SubpageCTA";
+import JsonLd from "@/components/ui/JsonLd";
+
+const workshopSchema = {
+  "@context": "https://schema.org",
+  "@type": "Course",
+  name: "AI Workshop for Virksomheder",
+  description:
+    "Hands-on AI-workshop for danske virksomheder. Lær ChatGPT, prompt engineering og praktisk brug af AI.",
+  provider: {
+    "@type": "Organization",
+    name: "AI Konsulenterne",
+    sameAs: "https://ai-konsulenterne.dk",
+  },
+  courseMode: "onsite",
+  educationalLevel: "Intermediate",
+  inLanguage: "da",
+  offers: {
+    "@type": "Offer",
+    priceCurrency: "DKK",
+    availability: "https://schema.org/InStock",
+  },
+  hasCourseInstance: {
+    "@type": "CourseInstance",
+    courseMode: "onsite",
+    location: {
+      "@type": "Place",
+      address: { "@type": "PostalAddress", addressCountry: "DK" },
+    },
+  },
+};
 
 export const metadata: Metadata = {
-  title: "AI Workshop",
+  title: "AI Workshop for Virksomheder | Hands-on AI Kursus",
   description:
-    "Hands-on AI workshop for din virksomhed. Lær hvordan AI kan effektivisere jeres hverdag — med konkrete værktøjer I kan bruge med det samme.",
+    "AI-workshop for danske virksomheder. Hands-on kursus i ChatGPT, prompt engineering og AI-værktøjer — så medarbejderne kan bruge AI fra dag 1.",
+  alternates: { canonical: "/workshop" },
+  keywords: [
+    "AI workshop virksomhed",
+    "AI kursus",
+    "ChatGPT kursus virksomhed",
+    "prompt engineering kursus",
+    "AI træning medarbejdere",
+  ],
+  openGraph: {
+    title: "AI Workshop for Virksomheder — Hands-on Kursus",
+    description:
+      "AI-workshop til danske virksomheder. Fra ChatGPT til skræddersyede AI-løsninger.",
+    url: "/workshop",
+  },
 };
 
 const includes = [
@@ -57,6 +101,7 @@ const formats = [
 export default function Workshop() {
   return (
     <>
+      <JsonLd data={workshopSchema} />
       {/* Hero */}
       <section className="pt-[clamp(4rem,12vw,8rem)] pb-[clamp(3rem,8vw,6rem)]">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
@@ -73,7 +118,7 @@ export default function Workshop() {
                 Konkrete værktøjer — ikke teori og buzzwords.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 mt-10">
-                <Button variant="primary" size="lg" href="/kontakt">
+                <Button variant="primary" size="lg" href="/kontakt" cal>
                   Book en workshop
                 </Button>
               </div>

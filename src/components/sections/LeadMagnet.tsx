@@ -47,12 +47,24 @@ export default function LeadMagnet() {
                 Gratis AI-guide
               </p>
               <h2 className="text-2xl lg:text-3xl font-bold tracking-heading leading-snug">
-                Hvad kan AI egentlig? + Sådan kommer din virksomhed i gang
+                10 spørgsmål der afslører hvor AI giver mest værdi i jeres virksomhed
               </h2>
               <p className="text-white/60 mt-4 leading-relaxed">
-                Download vores gratis guide og forstå præcis hvordan AI kan bruges
-                i en virksomhed som din. Ingen buzzwords — kun konkret viden.
+                Et konkret værktøj I kan bruge i næste ledermøde. Ingen teori,
+                ingen buzzwords — bare de spørgsmål vi selv stiller når vi finder
+                AI-muligheder hos vores kunder.
               </p>
+              <ul className="text-white/70 text-sm mt-6 space-y-2">
+                <li className="flex gap-2 items-start">
+                  <span className="text-primary">→</span> Identificér de processer hvor AI har størst effekt
+                </li>
+                <li className="flex gap-2 items-start">
+                  <span className="text-primary">→</span> Estimér tid og penge sparet pr. proces
+                </li>
+                <li className="flex gap-2 items-start">
+                  <span className="text-primary">→</span> Find ud af hvor I skal starte først
+                </li>
+              </ul>
             </div>
           </FadeIn>
 

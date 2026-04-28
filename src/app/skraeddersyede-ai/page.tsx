@@ -2,11 +2,44 @@ import type { Metadata } from "next";
 import Button from "@/components/ui/Button";
 import FadeIn from "@/components/ui/FadeIn";
 import SubpageCTA from "@/components/sections/SubpageCTA";
+import JsonLd from "@/components/ui/JsonLd";
+
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  name: "Skræddersyede AI-løsninger",
+  serviceType: "AI Consulting & Development",
+  description:
+    "Skræddersyede AI-løsninger til danske SMV'er. Custom AI bygget og integreret med jeres CRM, ERP og eksisterende systemer.",
+  provider: { "@id": "https://ai-konsulenterne.dk/#organization" },
+  areaServed: { "@type": "Country", name: "Denmark" },
+  url: "https://ai-konsulenterne.dk/skraeddersyede-ai",
+  offers: {
+    "@type": "Offer",
+    priceCurrency: "DKK",
+    description: "Skræddersyet AI-løsning, typisk 50.000-250.000 kr",
+  },
+};
 
 export const metadata: Metadata = {
-  title: "Skræddersyede AI-løsninger",
+  title: "Skræddersyede AI-løsninger til SMV'er | Custom AI Udvikling",
   description:
-    "Vi bygger AI-løsninger der passer præcis til din virksomheds behov. Ingen standardløsninger — kun skræddersyet AI.",
+    "Vi bygger skræddersyede AI-løsninger til danske SMV'er — integreret med jeres CRM, ERP og webshop. Platformsuafhængig rådgivning. Gratis AI-afklaring.",
+  alternates: { canonical: "/skraeddersyede-ai" },
+  keywords: [
+    "skræddersyede AI-løsninger",
+    "custom AI løsning",
+    "AI udvikling virksomhed",
+    "AI til SMV",
+    "AI integration CRM",
+    "AI implementering Danmark",
+  ],
+  openGraph: {
+    title: "Skræddersyede AI-løsninger til SMV'er",
+    description:
+      "Custom AI til danske SMV'er — integreret med jeres systemer. Gratis AI-afklaring.",
+    url: "/skraeddersyede-ai",
+  },
 };
 
 const benefits = [
@@ -66,6 +99,7 @@ const processSteps = [
 export default function SkraeddersyedeAI() {
   return (
     <>
+      <JsonLd data={serviceSchema} />
       {/* Hero */}
       <section className="pt-[clamp(4rem,12vw,8rem)] pb-[clamp(3rem,8vw,6rem)]">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
@@ -83,8 +117,8 @@ export default function SkraeddersyedeAI() {
                 allerede bruger.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 mt-10">
-                <Button variant="primary" size="lg" href="/kontakt">
-                  Book gratis AI-afklaring
+                <Button variant="primary" size="lg" href="/kontakt" cal>
+                  Få jeres gratis AI-plan
                 </Button>
                 <Button variant="secondary" size="lg" href="/cases">
                   Se eksempler

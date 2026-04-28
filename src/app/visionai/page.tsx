@@ -1,11 +1,40 @@
 import type { Metadata } from "next";
 import Button from "@/components/ui/Button";
 import FadeIn from "@/components/ui/FadeIn";
+import JsonLd from "@/components/ui/JsonLd";
+
+const productSchema = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: "VisionAI",
+  applicationCategory: "BusinessApplication",
+  operatingSystem: "Web",
+  description:
+    "VisionAI samler data fra CRM, ERP og andre systemer i ét AI-drevet business intelligence dashboard.",
+  offers: {
+    "@type": "Offer",
+    priceCurrency: "DKK",
+  },
+  provider: { "@id": "https://ai-konsulenterne.dk/#organization" },
+};
 
 export const metadata: Metadata = {
-  title: "VisionAI",
+  title: "VisionAI — AI-drevet Business Intelligence Dashboard",
   description:
-    "VisionAI giver din virksomhed AI-drevet indsigt på tværs af jeres systemer. Ét dashboard, fuld overblik.",
+    "VisionAI samler data fra CRM, ERP og andre systemer i ét AI-drevet dashboard. Automatisk rapportering og indsigt for danske SMV'er.",
+  alternates: { canonical: "/visionai" },
+  keywords: [
+    "AI dashboard",
+    "AI business intelligence",
+    "AI rapportering",
+    "AI dataanalyse virksomhed",
+  ],
+  openGraph: {
+    title: "VisionAI — AI-drevet Business Intelligence",
+    description:
+      "Samlet AI-dashboard på tværs af jeres systemer. Automatisk indsigt i realtid.",
+    url: "/visionai",
+  },
 };
 
 const features = [
@@ -38,6 +67,7 @@ const features = [
 export default function VisionAI() {
   return (
     <>
+      <JsonLd data={productSchema} />
       {/* Hero */}
       <section className="pt-[clamp(4rem,12vw,8rem)] pb-[clamp(3rem,8vw,6rem)]">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
@@ -55,7 +85,7 @@ export default function VisionAI() {
                 samme.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 mt-10">
-                <Button variant="primary" size="lg" href="/kontakt">
+                <Button variant="primary" size="lg" href="/kontakt" cal>
                   Få en demo
                 </Button>
                 <Button variant="secondary" size="lg" href="/cases">
@@ -183,7 +213,7 @@ export default function VisionAI() {
                 over jeres virksomhed.
               </p>
               <div className="mt-8">
-                <Button variant="primary" size="lg" href="/kontakt">
+                <Button variant="primary" size="lg" href="/kontakt" cal>
                   Book en demo
                 </Button>
               </div>

@@ -3,9 +3,22 @@ import CalBooking from "@/components/ui/CalBooking";
 import FadeIn from "@/components/ui/FadeIn";
 
 export const metadata: Metadata = {
-  title: "Kontakt",
+  title: "Kontakt AI Konsulenterne | Book Gratis AI-Afklaring",
   description:
-    "Kontakt AI Konsulenterne. Ring til Alexander på +45 25547074 eller book en gratis AI-afklaring.",
+    "Book en gratis 45-minutters AI-afklaring med Alexander. Ingen forpligtelse — finder vi ikke en mulighed, koster det ingenting. Ring +45 25 54 70 74.",
+  alternates: { canonical: "/kontakt" },
+  keywords: [
+    "kontakt AI konsulent",
+    "book AI møde",
+    "AI afklaring gratis",
+    "AI rådgivning København",
+  ],
+  openGraph: {
+    title: "Kontakt — Book Gratis AI-Afklaring",
+    description:
+      "45 min gratis AI-afklaring med Alexander. Ingen forberedelse, ingen forpligtelse.",
+    url: "/kontakt",
+  },
 };
 
 export default function Kontakt() {
@@ -90,7 +103,10 @@ export default function Kontakt() {
             </a>
 
             {/* Book */}
-            <div className="bg-primary/5 border-2 border-primary rounded-2xl p-8 text-center">
+            <a
+              href="#booking"
+              className="bg-primary/5 border-2 border-primary rounded-2xl p-8 text-center hover:shadow-md transition-shadow group block"
+            >
               <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mx-auto mb-4">
                 <svg
                   className="w-6 h-6 text-primary"
@@ -112,13 +128,13 @@ export default function Kontakt() {
               <p className="text-sm text-gray-500">
                 Gratis 45-minutters AI-afklaring
               </p>
-            </div>
+            </a>
           </div>
         </div>
       </section>
 
       {/* Cal.com Booking */}
-      <section className="pb-[clamp(3rem,8vw,6rem)]">
+      <section id="booking" className="pb-[clamp(3rem,8vw,6rem)] scroll-mt-24">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <FadeIn>
             <div className="max-w-3xl mx-auto text-center mb-10">

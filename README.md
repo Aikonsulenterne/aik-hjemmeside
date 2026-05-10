@@ -1,36 +1,46 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# AI Konsulenterne — Monorepo
 
-## Getting Started
+Indeholder hjemmesiden (Next.js) og CMS'et (Strapi) som **adskilte** projekter for at undgå PostCSS/dependency-konflikter.
 
-First, run the development server:
+## Struktur
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+```
+ai-konsulenterne/
+├── web/          ← Next.js hjemmeside (deployes til Vercel)
+├── cms/          ← Strapi CMS (deployes til Strapi Cloud)
+├── aik-design-system/  ← AIK brand guidelines
+└── *.md          ← Setup guides og dokumentation
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Lokal udvikling
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Hjemmeside (Next.js)
+```bash
+cd web
+npm install
+npm run dev          # → http://localhost:3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### CMS (Strapi)
+```bash
+cd cms
+npm install
+npm run develop      # → http://localhost:1337/admin
+```
 
-## Learn More
+Begge skal køre samtidigt i dev. Hjemmesiden henter indhold fra Strapi.
 
-To learn more about Next.js, take a look at the following resources:
+## Deployment
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Vercel:** Root directory = `web/` — auto-deploy fra git push
+- **Strapi Cloud:** Base directory = `cms/` — auto-deploy fra git push
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Se `DEPLOY.md` for fuld guide.
 
-## Deploy on Vercel
+## Dokumentation
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `CLAUDE.md` — Kodningsguidelines og brand-info
+- `DEPLOY.md` — Hostingdetaljer (Vercel + Strapi Cloud)
+- `STRAPI-SETUP.md` — Strapi content types og workflow
+- `COOKIEBOT-SETUP.md` — Cookie consent setup
+- `SEO-STRATEGI.md` — Keyword-strategi og content-kalender

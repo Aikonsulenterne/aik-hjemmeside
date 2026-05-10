@@ -2,6 +2,14 @@
 
 ---
 
+## 🎨 Design System
+
+Før **enhver** design-, copy- eller branded UI-opgave skal du læse [`aik-design-system/CLAUDE.md`](aik-design-system/CLAUDE.md).
+
+Den mappe er den autoritative reference for AIKs brand, voice, farver, typografi og komponent-mønstre. Den distillerer den officielle Brand Guideline v1.0 (2024) til kode-førstedokumentation.
+
+---
+
 ## ⚠️ REGEL #1: CLAUDE MÅ ALDRIG LYVE OM HVAD DEN HAR GJORT
 
 Efter ENHVER handling skal Claude verificere med konkret bevis:
